@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+{% block title %}PHLOX — Premium Electronics{% endblock %}
+
+{% block content %}
+<div class="container">
+  <!-- HERO -->
+  <section class="hero">
+    <span class="hero-blob b1"></span><span class="hero-blob b2"></span><span class="hero-blob b3"></span>
+    <div class="hero-inner">
+      <div>
+        <span class="hero-tag"><b>NEW</b> Studio Wireless — now with 40h battery</span>
+        <h1>Sound that<br><span class="text-grad">moves you.</span></h1>
+        <p class="lead">Premium headphones, wearables and everyday tech — carefully curated, beautifully designed and delivered to your door.</p>
+        <div class="hero-cta">
+          <a class="btn-brand" href="{% url 'shop' %}">Shop collection <i class="bi bi-arrow-right"></i></a>
+          <a class="btn-ghost" href="{% url 'about' %}"><i class="bi bi-play-circle"></i> Our story</a>
+        </div>
+        <div class="hero-stats">
+          <div><strong data-count="25" data-suffix="K+">0</strong><span>Happy customers</span></div>
+          <div><strong data-count="4.9" data-dec="1">0</strong><span>Average rating</span></div>
+          <div><strong data-count="120" data-suffix="+">0</strong><span>Premium products</span></div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-ring"></div>
+        <div class="hero-card"><img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1000&q=85" alt="Studio wireless headphones"></div>
+        <div class="float-chip c1"><i class="bi bi-battery-charging"></i><div><b>40h battery</b><small>Fast charge in 10 min</small></div></div>
+        <div class="float-chip c2"><i class="bi bi-star-fill"></i><div><b>4.9 / 5 rating</b><small>2,300+ reviews</small></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORIES -->
+  <section class="section">
+    <div class="cats reveal">
+      <a class="cat-chip" href="{% url 'shop' %}?category=Audio"><i class="bi bi-headphones"></i>Audio</a>
+      <a class="cat-chip" href="{% url 'shop' %}?category=Computers"><i class="bi bi-laptop"></i>Computers</a>
+      <a class="cat-chip" href="{% url 'shop' %}?category=Wearables"><i class="bi bi-smartwatch"></i>Wearables</a>
+      <a class="cat-chip" href="{% url 'shop' %}?category=Gaming"><i class="bi bi-controller"></i>Gaming</a>
+      <a class="cat-chip" href="{% url 'shop' %}?category=Cameras"><i class="bi bi-camera"></i>Cameras</a>
+    </div>
+  </section>
+
+  <!-- BENTO -->
+  <section class="section" style="padding-top:34px">
+    <div class="bento">
+      <a class="tile t-a reveal" href="{% url 'shop' %}?category=Audio"><img src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=1000&q=80" alt="" loading="lazy"><span class="go"><i class="bi bi-arrow-right"></i></span><small>Enjoy</small><h3>Immersive<br>Audio</h3></a>
+      <a class="tile t-b reveal d1" href="{% url 'shop' %}?category=Wearables"><img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1000&q=80" alt="" loading="lazy"><span class="go"><i class="bi bi-arrow-right"></i></span><small>New</small><h3>Wear the<br>Future</h3></a>
+      <a class="tile t-c reveal d2" href="{% url 'shop' %}?category=Computers"><img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=1000&q=80" alt="" loading="lazy"><span class="go"><i class="bi bi-arrow-right"></i></span><small>Trending</small><h3>Laptops</h3></a>
+      <a class="tile t-d reveal" href="{% url 'shop' %}?category=Cameras"><img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=1000&q=80" alt="" loading="lazy"><span class="go"><i class="bi bi-arrow-right"></i></span><small>Create</small><h3>Cameras</h3></a>
+      <a class="tile t-e reveal d1" href="{% url 'shop' %}?category=Gaming"><img src="https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?auto=format&fit=crop&w=1000&q=80" alt="" loading="lazy"><span class="go"><i class="bi bi-arrow-right"></i></span><small>Best</small><h3>Gaming<br>Consoles</h3></a>
+      <a class="tile t-f reveal d2" href="{% url 'shop' %}?category=Audio"><img src="https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=1000&q=80" alt="" loading="lazy"><span class="go"><i class="bi bi-arrow-right"></i></span><small>Smart home</small><h3>Speakers that<br>fill the room</h3></a>
+    </div>
+  </section>
+
+  <!-- BENEFITS -->
+  <section class="section" style="padding-top:44px">
+    <div class="benefits">
+      <div class="benefit reveal"><i class="bi bi-truck"></i><div><b>Free shipping</b><small>On orders over $500</small></div></div>
+      <div class="benefit reveal d1"><i class="bi bi-arrow-repeat"></i><div><b>30-day returns</b><small>No questions asked</small></div></div>
+      <div class="benefit reveal d2"><i class="bi bi-headset"></i><div><b>24/7 support</b><small>Real humans, fast replies</small></div></div>
+      <div class="benefit reveal d3"><i class="bi bi-shield-lock"></i><div><b>Secure payment</b><small>Protected checkout</small></div></div>
+    </div>
+  </section>
+
+  <!-- BEST SELLERS -->
+  <section class="section">
+    <div class="section-head reveal">
+      <div><span class="eyebrow">Best sellers</span><h2>Products everyone loves</h2><p>Hand-picked favourites from our community.</p></div>
+      <a class="link-arrow" href="{% url 'shop' %}">View all products <i class="bi bi-arrow-right"></i></a>
+    </div>
+    <div class="row g-3 g-md-4" id="featured-products">
+      {# DJANGO: pass `products` from the view. {% empty %} shows static demo cards until then. #}
+      {% for p in products %}
+        {% include "partials/_product_card.html" with id=p.id name=p.name price=p.price image=p.image.url category=p.category stock=p.stock %}
+      {% empty %}
+        {% include "partials/_demo_products.html" %}
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- DEAL -->
+  <section class="section">
+    <div class="deal reveal">
+      <div>
+        <span class="eyebrow" style="color:#fff">Limited offer · 20% off</span>
+        <h2>Summer<br>Sale is on.</h2>
+        <p>Exclusive prices on your favourite tech essentials. Grab them before the timer runs out.</p>
+        <div class="countdown" data-countdown>
+          <div><b data-cd="d">00</b><small>Days</small></div><div><b data-cd="h">00</b><small>Hours</small></div>
+          <div><b data-cd="m">00</b><small>Mins</small></div><div><b data-cd="s">00</b><small>Secs</small></div>
+        </div>
+        <a class="btn-white" href="{% url 'shop' %}">Shop the sale <i class="bi bi-arrow-right"></i></a>
+      </div>
+      <img class="deal-img" loading="lazy" src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1000&q=80" alt="Smart watch on sale">
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="section">
+    <div class="section-head reveal"><div><span class="eyebrow">Testimonials</span><h2>Loved by thousands</h2></div></div>
+    <div class="reviews">
+      <figure class="review reveal"><div class="stars">★★★★★</div><p>"The sound quality is unreal and the packaging felt premium. Delivery was faster than promised."</p><div class="who"><span class="avatar">A</span><div><b>Aziza K.</b><small>Verified buyer</small></div></div></figure>
+      <figure class="review reveal d1"><div class="stars">★★★★★</div><p>"Switched my whole desk setup to PHLOX. Great prices and genuinely helpful support."</p><div class="who"><span class="avatar">J</span><div><b>Jasur M.</b><small>Verified buyer</small></div></div></figure>
+      <figure class="review reveal d2"><div class="stars">★★★★★</div><p>"Beautiful store, easy checkout and the smart watch is perfect. Already ordered a second gift."</p><div class="who"><span class="avatar">S</span><div><b>Sarah L.</b><small>Verified buyer</small></div></div></figure>
+    </div>
+  </section>
+
+  <!-- DARK DEAL -->
+  <section class="section">
+    <div class="deal deal-dark reveal">
+      <div>
+        <span class="eyebrow" style="color:#c4b5fd">Member exclusive</span>
+        <h2>Happy<br>Hours.</h2>
+        <p>Join PHLOX and unlock early access to drops, free shipping upgrades and birthday gifts.</p>
+        <a class="btn-brand" href="{% url 'register' %}">Create free account <i class="bi bi-arrow-right"></i></a>
+      </div>
+      <img class="deal-img" loading="lazy" src="https://images.unsplash.com/photo-1593508512255-86ab42a8e620?auto=format&fit=crop&w=1000&q=80" alt="VR headset">
+    </div>
+  </section>
+
+  <!-- NEWS -->
+  <section class="section" style="padding-bottom:20px">
+    <div class="section-head reveal">
+      <div><span class="eyebrow">Journal</span><h2>Recent news</h2><p>Stories from the world of technology.</p></div>
+      <a class="link-arrow" href="{% url 'blog' %}">All stories <i class="bi bi-arrow-right"></i></a>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4 reveal"><a class="news-card" href="{% url 'article' %}"><div class="ph"><img loading="lazy" src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=80" alt=""></div><div class="tx"><span class="tag">Guides</span><h5>How to choose the perfect gadgets</h5><p class="subtle small mb-2">Discover the newest trends and tips for getting the most from your tech.</p><small>October 5, 2026 · 5 min read</small></div></a></div>
+      <div class="col-md-4 reveal d1"><a class="news-card" href="{% url 'article' %}"><div class="ph"><img loading="lazy" src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=900&q=80" alt=""></div><div class="tx"><span class="tag">Workspace</span><h5>A smarter everyday workspace</h5><p class="subtle small mb-2">Small upgrades that make your desk faster, quieter and a joy to use.</p><small>October 12, 2026 · 4 min read</small></div></a></div>
+      <div class="col-md-4 reveal d2"><a class="news-card" href="{% url 'article' %}"><div class="ph"><img loading="lazy" src="https://images.unsplash.com/photo-1593508512255-86ab42a8e620?auto=format&fit=crop&w=900&q=80" alt=""></div><div class="tx"><span class="tag">Gaming</span><h5>The new era of virtual reality</h5><p class="subtle small mb-2">What next-generation headsets mean for play, work and fitness.</p><small>October 19, 2026 · 6 min read</small></div></a></div>
+    </div>
+  </section>
+</div>
+{% endblock %}

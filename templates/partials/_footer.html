@@ -1,0 +1,62 @@
+{% load static %}
+{# Optional pages: they only render if you add a url with that name (see ADD_THESE_URLS_VIEWS.txt) #}
+{% url 'faq' as faq_url %}{% url 'privacy' as privacy_url %}{% url 'terms' as terms_url %}
+<section class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+        {% for i in "12" %}<span>GOLDEN</span><span>✦</span><span>SWEETY</span><span>✦</span><span>FASTLANE</span><span>✦</span><span>URBAN</span><span>✦</span><span>JR AUDIO</span><span>✦</span><span>NOVA</span><span>✦</span>{% endfor %}
+    </div>
+</section>
+
+<footer class="site-footer">
+    <div class="container">
+        <div class="row g-4 g-lg-5">
+            <div class="col-lg-4">
+                <a class="brand" href="{% url 'home' %}"><span class="brand-dot"></span>PHLOX</a>
+                <p class="mt-3 foot-text">Thoughtfully curated technology for the way you live. Designed to last, made to be loved.</p>
+                <div class="socials">
+                    <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                    <a href="#" aria-label="X"><i class="bi bi-twitter-x"></i></a>
+                    <a href="#" aria-label="Telegram"><i class="bi bi-telegram"></i></a>
+                </div>
+            </div>
+            <div class="col-6 col-lg-2">
+                <h6>Explore</h6>
+                <ul class="foot-list">
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'shop' %}">Shop</a></li>
+                    <li><a href="{% url 'about' %}">About</a></li>
+                    <li><a href="{% url 'blog' %}">Journal</a></li>
+                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                </ul>
+            </div>
+            <div class="col-6 col-lg-2">
+                <h6>Help</h6>
+                <ul class="foot-list">
+                    <li><a href="{% url 'account' %}">My account</a></li>
+                    <li><a href="{% url 'cart' %}">Shopping bag</a></li>
+                    <li><a href="{% url 'wishlist' %}">Wishlist</a></li>
+                    {% if faq_url %}<li><a href="{{ faq_url }}">FAQ</a></li>{% endif %}
+                </ul>
+            </div>
+            <div class="col-lg-4">
+                <h6>Join the list</h6>
+                <p class="foot-text">New drops, honest reviews and member-only offers. No spam.</p>
+                <form class="newsletter" id="newsletter" method="post" action="" data-demo="true">
+                    {% csrf_token %}
+                    <input type="hidden" name="form_type" value="newsletter">
+                    <input type="email" name="email" required placeholder="you@email.com" aria-label="Email address">
+                    <button type="submit" class="btn-brand">Subscribe</button>
+                </form>
+                <p class="foot-text mt-3 mb-0"><i class="bi bi-envelope"></i> hello@phlox.example &nbsp; <i class="bi bi-telephone"></i> +1 (555) 012-2026</p>
+            </div>
+        </div>
+        <div class="foot-bottom">
+            <span>© 2026 PHLOX. All rights reserved.</span>
+            <span>
+                {% if privacy_url %}<a href="{{ privacy_url }}">Privacy Policy</a>{% else %}Privacy Policy{% endif %} ·
+                {% if terms_url %}<a href="{{ terms_url }}">Terms</a>{% else %}Terms{% endif %}
+            </span>
+        </div>
+    </div>
+</footer>

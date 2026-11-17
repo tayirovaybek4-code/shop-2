@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}My account — PHLOX{% endblock %}
+{% block page_head %}{% include "partials/_page_head.html" with title="My account" %}{% endblock %}
+
+{% block content %}
+<div class="container page-body">
+  {% if user.is_authenticated %}
+  <div class="acc-layout">
+    <aside class="acc-side">
+      <div class="avatar">
+        <span>{{ user.first_name|default:user.get_username|slice:":1"|upper }}</span>
+        {% if profile_avatar_url %}
+        <img class="profile-photo" src="{{ profile_avatar_url }}" alt="Profile photo"
+             referrerpolicy="no-referrer" onerror="this.remove()">
+        {% endif %}
+      </div>
+      <h5 class="mb-0">{{ user.get_full_name|default:user.get_username }}</h5>
+      <small class="text-muted">{{ user.email }}</small>
+      <nav class="acc-nav">
+        <a class="active" href="{% url 'account' %}"><i class="bi bi-receipt"></i> My orders</a>
+        <a href="{% url 'wishlist' %}"><i class="bi bi-heart"></i> Wishlist</a>
+        <a href="{% url 'cart' %}"><i class="bi bi-bag"></i> Shopping bag</a>
+        {% if user.is_staff %}<a href="{% url 'dashboard' %}"><i class="bi bi-speedometer2"></i> Admin dashboard</a>{% endif %}
+        {# Logout requires a CSRF-protected POST. #}
+        {% url 'logout' as logout_url %}
+        {% if logout_url %}<form method="post" action="{{ logout_url }}">{% csrf_token %}<button type="submit"><i class="bi bi-box-arrow-right"></i> Log out</button></form>{% endif %}
+      </nav>
+    </aside>
+    <div>
+      <div class="panel-card">
+        <h4 class="mb-1">Hello, {{ user.first_name|default:user.get_username }} 👋</h4>
+        <p class="text-muted mb-0">Here's what's happening with your orders.</p>
+      </div>
+      <div class="panel-card">
+        <h5 class="mb-2">My orders</h5>
+        {# DJANGO: pass `orders` from the view #}
+        {% for o in orders %}
+        <div class="order-row">
+          <div><b>{{ o.reference }}</b><div class="small text-muted">{{ o.created_at|date:"M d, Y" }}</div></div>
+          <span class="status {{ o.status }}">{{ o.status|title }}</span>
+          <b>${{ o.total }}</b>
+        </div>
+        {% empty %}
+        <div class="empty-state"><i class="bi bi-inbox"></i><h5>No orders yet</h5><p>When you place an order it will show up here.</p><a class="btn-brand" href="{% url 'shop' %}">Browse products</a></div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  {% else %}
+  <div class="empty-state panel-card" style="max-width:620px;margin:0 auto">
+    <i class="bi bi-person-lock"></i><h4>Please sign in</h4>
+    <p>Log in or create an account to see your orders and saved details.</p>
+    <div class="d-flex gap-3 justify-content-center flex-wrap"><a class="btn-brand" href="{% url 'login' %}">Sign in</a><a class="btn-ghost" href="{% url 'register' %}">Register</a></div>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

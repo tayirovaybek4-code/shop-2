@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% block title %}{% if product %}{{ product.name }}{% else %}Product{% endif %} — PHLOX{% endblock %}
+
+{% block page_head %}
+<div class="container">
+  <div class="page-head">
+    <h1>Product details</h1>
+    <ul class="crumbs"><li><a href="{% url 'home' %}">Home</a></li><li><a href="{% url 'shop' %}">Shop</a></li><li data-bind="crumb">{{ product.name|default:"Studio Wireless Headphones" }}</li></ul>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+{% comment %}
+  DJANGO: replace the demo values below with your object, e.g.
+    data-id="{{ product.id }}" data-name="{{ product.name }}" data-price="{{ product.price }}"
+    data-image="{{ product.image.url }}" data-category="{{ product.category }}" data-stock="{{ product.stock }}"
+  and DELETE data-demo="true" (that attribute only lets the demo fill the page from ?id=).
+{% endcomment %}
+<div class="container page-body">
+  <div data-product-page data-demo="true"
+       data-id="{{ product.id|default:'1' }}" data-name="{{ product.name|default:'Studio Wireless Headphones' }}"
+       data-price="{{ product.price|default:'199' }}" data-image="{{ product.image.url|default:'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=80' }}"
+       data-category="{{ product.category|default:'Audio' }}" data-stock="{{ product.stock|default:'12' }}" data-rating="4.9">
+    <div class="pd">
+      <!-- Gallery -->
+      <div class="gallery">
+        <div class="g-main" id="g-main">
+          <img id="g-main-img" data-gallery-img src="{{ product.image.url|default:'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1200&q=85' }}" alt="{{ product.name|default:'Studio Wireless Headphones' }}">
+        </div>
+        <div class="g-thumbs">
+          {# DJANGO: loop over product images here #}
+          {% for i in "1234" %}
+          <button type="button" class="g-thumb {% if forloop.first %}active{% endif %}" aria-label="Photo {{ forloop.counter }}"><img data-gallery-img src="{{ product.image.url|default:'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=400&q=70' }}" alt=""></button>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- Info -->
+      <div class="pd-info">
+        <span class="eyebrow" data-bind="category">{{ product.category|default:"Audio" }}</span>
+        <h1 data-bind="name">{{ product.name|default:"Studio Wireless Headphones" }}</h1>
+        <div class="pd-rating"><span class="stars">★★★★★</span> <b>4.9</b> <span class="text-muted">· 2,300+ reviews</span></div>
+        <div class="pd-price"><b data-bind="price">${{ product.price|default:"199.00" }}</b><s data-bind="old">$249.00</s><span class="save" data-bind="save">Save 20%</span></div>
+        <p class="pd-desc" data-bind="description">{{ product.description|default:"Premium studio wireless headphones with refined design, exceptional performance and everyday comfort. Carefully tested by our team and backed by a 2-year warranty." }}</p>
+        <ul class="pd-points">
+          <li><i class="bi bi-check-circle-fill"></i> Active noise cancellation</li>
+          <li><i class="bi bi-check-circle-fill"></i> Up to 40 hours of battery life</li>
+          <li><i class="bi bi-check-circle-fill"></i> Bluetooth 5.3 · multipoint connection</li>
+        </ul>
+        <span class="stock-line" data-bind="stock">{{ product.stock|default:"12" }} in stock — ships within 24h</span>
+
+        <div class="buy-row" id="buy-row">
+          <div class="qty lg"><button type="button" id="pd-minus" aria-label="Decrease">−</button><input id="pd-qty" type="number" value="1" min="1" aria-label="Quantity"><button type="button" id="pd-plus" aria-label="Increase">+</button></div>
+          <button type="button" class="btn-brand" data-add-to-cart><i class="bi bi-bag-plus"></i> Add to bag</button>
+          <button type="button" class="wish-btn" data-wish-btn aria-label="Add to wishlist"><i class="bi bi-heart"></i></button>
+        </div>
+        <div class="assure"><div><i class="bi bi-truck"></i>Free delivery over $500</div><div><i class="bi bi-arrow-repeat"></i>30-day returns</div><div><i class="bi bi-shield-check"></i>2-year warranty</div></div>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs-wrap">
+      <div class="tab-nav" role="tablist">
+        <button class="active" data-tab="tab-desc" role="tab">Description</button>
+        <button data-tab="tab-specs" role="tab">Specifications</button>
+        <button data-tab="tab-reviews" role="tab">Reviews (3)</button>
+      </div>
+      <div class="tab-pane active" id="tab-desc">
+        <div class="prose" style="margin:0">
+          <p>Designed for people who care about how things sound, feel and look. Every detail — from the memory-foam ear cushions to the brushed aluminium hinge — is built to last and made to be loved.</p>
+          <p>Pair with two devices at once, switch between noise cancelling and transparency mode with a tap, and enjoy studio-grade clarity on every track.</p>
+        </div>
+      </div>
+      <div class="tab-pane" id="tab-specs">
+        <table class="spec-table">
+          <tr><td>Connectivity</td><td>Bluetooth 5.3 · 3.5mm wired</td></tr>
+          <tr><td>Battery life</td><td>Up to 40 hours</td></tr>
+          <tr><td>Charging</td><td>USB-C · 10 min = 5 hours</td></tr>
+          <tr><td>Weight</td><td>254 g</td></tr>
+          <tr><td>Warranty</td><td>2 years</td></tr>
+        </table>
+      </div>
+      <div class="tab-pane" id="tab-reviews">
+        <div class="reviews">
+          <figure class="review"><div class="stars">★★★★★</div><p>Incredible sound for the price. Comfortable for hours.</p><div class="who"><span class="avatar">A</span><div><b>Aziza K.</b><small>2 weeks ago</small></div></div></figure>
+          <figure class="review"><div class="stars">★★★★★</div><p>Noise cancelling is superb — perfect for flights.</p><div class="who"><span class="avatar">J</span><div><b>Jasur M.</b><small>1 month ago</small></div></div></figure>
+          <figure class="review"><div class="stars">★★★★☆</div><p>Battery lasts forever. Case could be a bit smaller.</p><div class="who"><span class="avatar">S</span><div><b>Sarah L.</b><small>2 months ago</small></div></div></figure>
+        </div>
+      </div>
+    </div>
+
+    <!-- Related -->
+    <div class="section-head" style="margin-top:80px"><div><span class="eyebrow">More to love</span><h2>You may also like</h2></div><a class="link-arrow" href="{% url 'shop' %}">Browse all <i class="bi bi-arrow-right"></i></a></div>
+    <div class="row g-3 g-md-4" id="related-products">
+      {% for p in related %}
+        {% include "partials/_product_card.html" with id=p.id name=p.name price=p.price image=p.image.url category=p.category stock=p.stock %}
+      {% empty %}
+        {% include "partials/_demo_products.html" %}
+      {% endfor %}
+    </div>
+
+    <!-- Sticky mobile buy bar -->
+    <div class="sticky-buy" id="sticky-buy"><div><small class="text-muted d-block" data-bind="name">{{ product.name|default:"Studio Wireless Headphones" }}</small><b data-bind="price">${{ product.price|default:"199.00" }}</b></div><button type="button" class="btn-brand ms-auto" data-add-to-cart><i class="bi bi-bag-plus"></i> Add to bag</button></div>
+  </div>
+</div>
+{% endblock %}

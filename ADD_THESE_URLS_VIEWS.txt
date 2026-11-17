@@ -1,0 +1,27 @@
+==============================================================================
+OPTIONAL — new pages I added. Paste these into YOUR shop/views.py and shop/urls.py
+(I did not touch your models / views / urls as you asked.)
+Nothing breaks if you skip this: the footer hides links to pages that have no url.
+==============================================================================
+
+--- shop/views.py (add) ---
+def faq(request):
+    return render(request, "faq.html")
+
+def privacy(request):
+    return render(request, "privacy.html")
+
+def terms(request):
+    return render(request, "terms.html")
+
+--- shop/urls.py (add inside urlpatterns) ---
+    path('faq/', views.faq, name="faq"),
+    path('privacy/', views.privacy, name="privacy"),
+    path('terms/', views.terms, name="terms"),
+
+--- Logout button on the account page ---
+# Already configured in shop/urls.py using allauth LogoutView.
+# The account page submits a CSRF-protected POST to /logout/.
+
+--- Custom error pages (only used when DEBUG = False) ---
+# 404.html and 500.html are already in templates/ — Django picks them up automatically.

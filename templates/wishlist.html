@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Wishlist — PHLOX{% endblock %}
+{% block page_head %}{% include "partials/_page_head.html" with title="Your wishlist" crumb="Wishlist" %}{% endblock %}
+
+{% block content %}
+<div class="container page-body">
+  {# Filled by app.js from the visitor's saved hearts. #}
+  <div class="row g-3 g-md-4" id="wishlist-grid"></div>
+</div>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}About — PHLOX{% endblock %}
+{% block page_head %}{% include "partials/_page_head.html" with title="About PHLOX" crumb="About" %}{% endblock %}
+
+{% block content %}
+<div class="container page-body">
+  <div class="split">
+    <img class="rounded-img reveal" src="https://images.unsplash.com/photo-1498049794561-7780e7231661?auto=format&fit=crop&w=1100&q=80" alt="Technology" loading="lazy">
+    <div class="reveal d1">
+      <span class="eyebrow">Our story</span>
+      <h2>Technology that feels <span class="text-grad">personal.</span></h2>
+      <p class="subtle">PHLOX brings thoughtfully designed electronics together in one beautiful shopping experience. We believe great technology should look good, feel intuitive and make every day better.</p>
+      <p class="subtle">Every product in our collection is tested by our team, so you can buy with confidence — and love it for years.</p>
+      <a href="{% url 'shop' %}" class="btn-brand mt-2">Explore collection <i class="bi bi-arrow-right"></i></a>
+    </div>
+  </div>
+
+  <div class="section"><div class="stat-grid">
+    <div class="stat reveal"><b data-count="25" data-suffix="K+">0</b><span>Happy customers</span></div>
+    <div class="stat reveal d1"><b data-count="120" data-suffix="+">0</b><span>Curated products</span></div>
+    <div class="stat reveal d2"><b data-count="40" data-suffix="+">0</b><span>Brand partners</span></div>
+    <div class="stat reveal d3"><b data-count="4.9" data-dec="1">0</b><span>Average rating</span></div>
+  </div></div>
+
+  <div class="section" style="padding-bottom:20px">
+    <div class="section-head reveal"><div><span class="eyebrow">What we stand for</span><h2>Our values</h2></div></div>
+    <div class="values">
+      <div class="value-card reveal"><i class="bi bi-gem"></i><h4>Quality first</h4><p class="subtle mb-0">We only sell products we would happily use ourselves.</p></div>
+      <div class="value-card reveal d1"><i class="bi bi-heart-pulse"></i><h4>Customer obsessed</h4><p class="subtle mb-0">Fast replies, easy returns and honest advice, always.</p></div>
+      <div class="value-card reveal d2"><i class="bi bi-recycle"></i><h4>Built to last</h4><p class="subtle mb-0">Repairable, durable tech with real warranties.</p></div>
+    </div>
+  </div>
+</div>
+{% endblock %}

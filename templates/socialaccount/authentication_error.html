@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Google sign-in — PHLOX{% endblock %}
+{% block page_head %}{% include "partials/_page_head.html" with title="Google sign-in" %}{% endblock %}
+{% block content %}
+<div class="container page-body">
+  <div class="panel-card text-center" style="max-width:620px;margin:0 auto" role="alert">
+    <h3>Google sign-in could not be completed</h3>
+    <p>Please try again later or sign in with your email and password.</p>
+    <div class="d-flex gap-3 justify-content-center flex-wrap">
+      <a class="btn-brand" href="{% url 'login' %}">Back to sign in</a>
+      <a class="btn-ghost" href="{% url 'register' %}">Create an account</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

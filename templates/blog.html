@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Journal — PHLOX{% endblock %}
+{% block page_head %}{% include "partials/_page_head.html" with title="Latest stories" crumb="Journal" %}{% endblock %}
+
+{% block content %}
+<div class="container page-body">
+  <div class="row g-4">
+    {# DJANGO: wrap this card in {% for post in posts %} … {% endfor %} #}
+    <div class="col-md-6 col-lg-4 reveal"><a class="news-card" href="{% url 'article' %}"><div class="ph"><img loading="lazy" src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=80" alt=""></div><div class="tx"><span class="tag">Guides</span><h4>Finding your perfect headphones</h4><p class="subtle small mb-2">Practical inspiration for your next tech upgrade.</p><small>October 2026 · 5 min read</small></div></a></div>
+    <div class="col-md-6 col-lg-4 reveal d1"><a class="news-card" href="{% url 'article' %}"><div class="ph"><img loading="lazy" src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=900&q=80" alt=""></div><div class="tx"><span class="tag">Workspace</span><h4>A smarter everyday workspace</h4><p class="subtle small mb-2">Small upgrades that make your desk faster and calmer.</p><small>October 2026 · 4 min read</small></div></a></div>
+    <div class="col-md-6 col-lg-4 reveal d2"><a class="news-card" href="{% url 'article' %}"><div class="ph"><img loading="lazy" src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=80" alt=""></div><div class="tx"><span class="tag">Wearables</span><h4>The new era of wearable tech</h4><p class="subtle small mb-2">Smart watches that finally earn their place on your wrist.</p><small>October 2026 · 6 min read</small></div></a></div>
+    <div class="col-md-6 col-lg-4 reveal"><a class="news-card" href="{% url 'article' %}"><div class="ph"><img loading="lazy" src="https://images.unsplash.com/photo-1593508512255-86ab42a8e620?auto=format&fit=crop&w=900&q=80" alt=""></div><div class="tx"><span class="tag">Gaming</span><h4>Virtual reality in 2026</h4><p class="subtle small mb-2">What next-gen headsets mean for play, work and fitness.</p><small>September 2026 · 6 min read</small></div></a></div>
+    <div class="col-md-6 col-lg-4 reveal d1"><a class="news-card" href="{% url 'article' %}"><div class="ph"><img loading="lazy" src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=900&q=80" alt=""></div><div class="tx"><span class="tag">Cameras</span><h4>Choosing your first camera</h4><p class="subtle small mb-2">Sensors, lenses and everything else, explained simply.</p><small>September 2026 · 7 min read</small></div></a></div>
+    <div class="col-md-6 col-lg-4 reveal d2"><a class="news-card" href="{% url 'article' %}"><div class="ph"><img loading="lazy" src="https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=900&q=80" alt=""></div><div class="tx"><span class="tag">Smart home</span><h4>Speakers that fill the room</h4><p class="subtle small mb-2">Our favourite smart speakers for every budget.</p><small>September 2026 · 4 min read</small></div></a></div>
+  </div>
+</div>
+{% endblock %}

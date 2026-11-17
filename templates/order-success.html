@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Order confirmed — PHLOX{% endblock %}
+{% block page_head %}{% include "partials/_page_head.html" with title="Order confirmed" %}{% endblock %}
+
+{% block content %}
+<div class="container page-body">
+  <div class="steps"><div class="done"><b><i class="bi bi-check"></i></b> Bag</div><div class="done"><b><i class="bi bi-check"></i></b> Details</div><div class="now"><b>3</b> Confirmation</div></div>
+  <div class="success-box" id="confetti-trigger">
+    <svg class="check-anim" viewBox="0 0 110 110" aria-hidden="true"><circle cx="55" cy="55" r="48"/><path d="M33 57l15 15 30-34"/></svg>
+    <h2>Thank you for your order!</h2>
+    <p class="subtle">We've received it and will email you the details shortly.</p>
+    <div class="ref-chip" id="order-reference">{{ order.reference|default:"" }}</div>
+    <div class="d-flex gap-3 justify-content-center flex-wrap">
+      <a class="btn-brand" href="{% url 'shop' %}">Continue shopping</a>
+      <a class="btn-ghost" href="{% url 'account' %}">View my orders</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

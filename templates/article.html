@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Technology Journal — PHLOX{% endblock %}
+{% block page_head %}{% include "partials/_page_head.html" with title="Technology journal" crumb="Journal" %}{% endblock %}
+
+{% block content %}
+<div class="container page-body">
+  <article class="prose">
+    <img class="article-cover" src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1400&q=80" alt="">
+    <span class="tag">Guides</span>
+    <h2 style="font-size:2.4rem;margin-top:16px">How to choose the perfect gadgets</h2>
+    <p class="subtle">October 2026 · PHLOX Editorial · 5 min read</p>
+    <p>Start with your everyday needs. A great gadget balances build quality, performance, battery life and comfort. Compare features, look for long-term software support, and choose devices that work well with the products you already own.</p>
+    <blockquote>The best technology disappears into your day — it just works, and feels good while doing it.</blockquote>
+    <h3>Look beyond the spec sheet</h3>
+    <p>Numbers only tell half the story. Read real reviews, hold the product when you can and think about how it fits your routine.</p>
+    <p>Our collection highlights simple, elegant tools for work, creativity and play.</p>
+    <a class="btn-brand mt-3" href="{% url 'shop' %}">Shop our picks <i class="bi bi-arrow-right"></i></a>
+  </article>
+</div>
+{% endblock %}

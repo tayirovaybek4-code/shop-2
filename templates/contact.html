@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Contact — PHLOX{% endblock %}
+{% block page_head %}{% include "partials/_page_head.html" with title="Contact us" crumb="Contact" %}{% endblock %}
+
+{% block content %}
+<div class="container page-body">
+  <div class="contact-grid">
+    <div class="reveal">
+      <span class="eyebrow">Get in touch</span>
+      <h2 class="mt-3 mb-3" style="font-size:2.4rem">We'd love to hear from you.</h2>
+      <p class="subtle mb-4">Have a question about our collection or an order? Drop us a message and we'll reply within 24 hours.</p>
+      <div class="info-card"><i class="bi bi-envelope"></i><div><small>Email</small><b>hello@phlox.example</b></div></div>
+      <div class="info-card"><i class="bi bi-telephone"></i><div><small>Phone</small><b>+1 (555) 012-2026</b></div></div>
+      <div class="info-card"><i class="bi bi-geo-alt"></i><div><small>Address</small><b>New York, United States</b></div></div>
+      <div class="info-card"><i class="bi bi-clock"></i><div><small>Working hours</small><b>Mon–Sat · 9:00–19:00</b></div></div>
+    </div>
+    {# DJANGO: remove data-demo="true" when your contact view saves/sends the message #}
+    <form class="form-panel reveal d1" id="contact-form" method="post" action="{% url 'contact' %}" data-demo="true" data-kind="contact-form">
+      {% csrf_token %}
+      <h3>Send a message</h3>
+      <div class="row g-3">
+        <div class="col-md-6"><label class="lbl" for="c-name">Your name</label><input class="form-control" id="c-name" name="name" required></div>
+        <div class="col-md-6"><label class="lbl" for="c-email">Email</label><input class="form-control" id="c-email" name="email" type="email" required></div>
+        <div class="col-12"><label class="lbl" for="c-subject">Subject</label><input class="form-control" id="c-subject" name="subject" required></div>
+        <div class="col-12"><label class="lbl" for="c-msg">Message</label><textarea class="form-control" id="c-msg" name="message" rows="6" required></textarea></div>
+        <div class="col-12"><button type="submit" class="btn-brand">Send message <i class="bi bi-send"></i></button></div>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

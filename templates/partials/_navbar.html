@@ -1,0 +1,41 @@
+{% load static %}
+<div class="announce">
+    <div class="container d-flex justify-content-center gap-4 flex-wrap">
+        <span><i class="bi bi-truck"></i> Free shipping over $500</span>
+        <span class="d-none d-md-inline"><i class="bi bi-arrow-repeat"></i> 30-day easy returns</span>
+        <span class="d-none d-md-inline"><i class="bi bi-shield-check"></i> 2-year warranty</span>
+    </div>
+</div>
+<header class="site-header" id="site-header">
+    <nav class="container nav-wrap">
+        <a class="brand" href="{% url 'home' %}" aria-label="PHLOX home"><span class="brand-dot"></span>PHLOX</a>
+
+        <ul class="nav-links" id="nav-links">
+            <li><a href="{% url 'home' %}" class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">Home</a></li>
+            <li><a href="{% url 'shop' %}" class="{% if request.resolver_match.url_name == 'shop' or request.resolver_match.url_name == 'product' %}active{% endif %}">Shop</a></li>
+            <li><a href="{% url 'about' %}" class="{% if request.resolver_match.url_name == 'about' %}active{% endif %}">About</a></li>
+            <li><a href="{% url 'blog' %}" class="{% if request.resolver_match.url_name == 'blog' or request.resolver_match.url_name == 'article' %}active{% endif %}">Journal</a></li>
+            <li><a href="{% url 'contact' %}" class="{% if request.resolver_match.url_name == 'contact' %}active{% endif %}">Contact</a></li>
+        </ul>
+
+        <div class="nav-actions">
+            <button class="icon-btn" data-open-search aria-label="Search"><i class="bi bi-search"></i></button>
+            <a class="icon-btn d-none d-sm-grid" href="{% url 'wishlist' %}" aria-label="Wishlist"><i class="bi bi-heart"></i><span class="badge-count" data-wish-count>0</span></a>
+            <button class="icon-btn" data-open-drawer aria-label="Open bag"><i class="bi bi-bag"></i><span class="badge-count" data-cart-count>0</span></button>
+            {% if user.is_authenticated %}
+                <a class="icon-btn" href="{% url 'account' %}" aria-label="My account" title="{{ user.get_full_name|default:user.get_username }}">
+                    <i class="bi bi-person-check"></i>
+                    {% if profile_avatar_url %}
+                    <img class="nav-profile-photo" src="{{ profile_avatar_url }}" alt=""
+                         referrerpolicy="no-referrer" onerror="this.remove()">
+                    {% endif %}
+                </a>
+                {% if user.is_staff %}<a class="icon-btn d-none d-lg-grid" href="{% url 'dashboard' %}" aria-label="Dashboard" title="Dashboard"><i class="bi bi-speedometer2"></i></a>{% endif %}
+            {% else %}
+                <a class="btn-brand btn-sm d-none d-md-inline-flex" href="{% url 'login' %}">Sign in</a>
+                <a class="icon-btn d-md-none" href="{% url 'login' %}" aria-label="Sign in"><i class="bi bi-person"></i></a>
+            {% endif %}
+            <button class="icon-btn burger" id="burger" aria-label="Menu" aria-expanded="false"><i class="bi bi-list"></i></button>
+        </div>
+    </nav>
+</header>

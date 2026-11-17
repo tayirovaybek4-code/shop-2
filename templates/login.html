@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}Sign in — PHLOX{% endblock %}
+{% block page_head %}
+{% include "partials/_page_head.html" with title="Welcome back" crumb="Sign in" %}
+{% endblock %}
+
+{% block content %}
+<div class="container page-body">
+  <div class="auth-wrap">
+    <div class="auth-art">
+      <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1000&q=70" alt="PHLOX members">
+      <span class="eyebrow" style="color:#fff">PHLOX members</span>
+      <h2 class="mt-3">Good to see you again.</h2>
+      <p>Track orders, save favourites and check out faster.</p>
+    </div>
+
+    <div class="auth-form">
+      <h3>Sign in</h3>
+      <p class="subtle mb-4">Enter your details to access your account.</p>
+      {% if form.non_field_errors %}
+      <div class="alert-soft" role="alert">{{ form.non_field_errors }}</div>
+      {% endif %}
+
+      <form id="login-form" method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        {% if redirect_field_value %}
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}">
+        {% endif %}
+
+        <label class="lbl" for="login-email">Email</label>
+        <input class="form-control mb-3{% if form.login.errors %} is-invalid{% endif %}"
+               id="login-email" type="email" name="login" autocomplete="email"
+               placeholder="you@email.com" value="{{ form.login.value|default_if_none:'' }}" required>
+        {% if form.login.errors %}
+        <div class="alert-soft" role="alert">{{ form.login.errors }}</div>
+        {% endif %}
+
+        <label class="lbl" for="login-pw">Password</label>
+        <div class="pw-field mb-3">
+          <input class="form-control{% if form.password.errors %} is-invalid{% endif %}"
+                 id="login-pw" type="password" name="password" autocomplete="current-password" required>
+          <button type="button" data-pw-toggle aria-label="Show password"><i class="bi bi-eye"></i></button>
+        </div>
+        {% if form.password.errors %}
+        <div class="alert-soft" role="alert">{{ form.password.errors }}</div>
+        {% endif %}
+
+        <div class="d-flex justify-content-between align-items-center mb-4 small">
+          <label class="d-flex gap-2 align-items-center">
+            <input type="checkbox" name="remember"{% if form.remember.value %} checked{% endif %} style="accent-color:var(--brand)">
+            Remember me
+          </label>
+          <a href="{% url 'account_reset_password' %}" class="fw-bold">Forgot password?</a>
+        </div>
+        {% if form.remember.errors %}
+        <div class="alert-soft" role="alert">{{ form.remember.errors }}</div>
+        {% endif %}
+
+        <button type="submit" class="btn-brand w-100">Sign in <i class="bi bi-arrow-right"></i></button>
+      </form>
+
+      <div class="divider">or</div>
+      {% include "partials/_google_login.html" %}
+      <p class="small text-center mb-0">
+        New to PHLOX? <a class="fw-bold" href="{% url 'register' %}{% if redirect_field_value %}?{{ redirect_field_name }}={{ redirect_field_value|urlencode }}{% endif %}">Create an account</a>
+      </p>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,7 @@
+{# Usage: {% include "partials/_page_head.html" with title="Shop" crumb="Shop" %} #}
+<div class="container">
+  <div class="page-head">
+    <h1>{{ title }}</h1>
+    <ul class="crumbs"><li><a href="{% url 'home' %}">Home</a></li><li>{{ crumb|default:title }}</li></ul>
+  </div>
+</div>

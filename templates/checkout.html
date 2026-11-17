@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Checkout — PHLOX{% endblock %}
+{% block page_head %}{% include "partials/_page_head.html" with title="Checkout" %}{% endblock %}
+
+{% block content %}
+<div class="container page-body">
+  <div class="steps"><div class="done"><b><i class="bi bi-check"></i></b> Bag</div><div class="now"><b>2</b> Details</div><div><b>3</b> Confirmation</div></div>
+  {# DJANGO: remove data-demo="true" once the checkout view handles the POST. #}
+  <form id="checkout-form" class="row g-4" method="post" action="{% url 'checkout' %}" data-demo="true" data-kind="checkout-form">
+    {% csrf_token %}
+    <input type="hidden" name="cart" id="cart-json">
+    <div class="col-lg-7">
+      <div class="form-panel">
+        <h3>Billing details</h3>
+        {% if form.non_field_errors %}<div class="alert-soft">{{ form.non_field_errors }}</div>{% endif %}
+        <div class="row g-3">
+          <div class="col-md-6"><label class="lbl" for="first">First name</label><input class="form-control" id="first" name="first" autocomplete="given-name" required></div>
+          <div class="col-md-6"><label class="lbl" for="last">Last name</label><input class="form-control" id="last" name="last" autocomplete="family-name" required></div>
+          <div class="col-md-6"><label class="lbl" for="email">Email</label><input type="email" class="form-control" id="email" name="email" autocomplete="email" required></div>
+          <div class="col-md-6"><label class="lbl" for="phone">Phone</label><input type="tel" class="form-control" id="phone" name="phone" autocomplete="tel" placeholder="+998 90 123 45 67"></div>
+          <div class="col-12"><label class="lbl" for="address">Street address</label><input class="form-control" id="address" name="address" autocomplete="street-address" required></div>
+          <div class="col-md-6"><label class="lbl" for="city">City</label><input class="form-control" id="city" name="city" autocomplete="address-level2" required></div>
+          <div class="col-md-6"><label class="lbl" for="zip">ZIP / Postal code</label><input class="form-control" id="zip" name="zip" autocomplete="postal-code" required></div>
+          <div class="col-12"><label class="lbl" for="notes">Order notes <span class="text-muted">(optional)</span></label><textarea class="form-control" id="notes" name="notes" rows="3" placeholder="Delivery instructions…"></textarea></div>
+        </div>
+      </div>
+      <div class="form-panel mt-4">
+        <h3>Payment</h3>
+        <label class="pay-opt"><input type="radio" name="payment" value="cod" checked><i class="bi bi-cash-coin"></i><div><b>Cash on delivery</b><div class="small text-muted">Pay when your order arrives</div></div></label>
+        <label class="pay-opt"><input type="radio" name="payment" value="card"><i class="bi bi-credit-card"></i><div><b>Card payment</b><div class="small text-muted">Connect your payment provider here</div></div></label>
+      </div>
+    </div>
+    <div class="col-lg-5">
+      <div class="summary">
+        <h3>Your order</h3>
+        <div id="checkout-summary"></div>
+        <button type="submit" class="btn-brand w-100 mt-4"><i class="bi bi-lock-fill"></i> Place order</button>
+        <p class="small text-muted text-center mt-3 mb-0"><i class="bi bi-shield-check"></i> Your information is encrypted and secure.</p>
+      </div>
+    </div>
+  </form>
+</div>
+{% endblock %}

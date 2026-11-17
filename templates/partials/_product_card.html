@@ -1,0 +1,34 @@
+{% comment %}
+  ONE product card used everywhere (home, shop, product, wishlist...).
+  Variables:  id, name, price, image, category, stock   (optional: old_price, rating, badge)
+
+  Django usage:
+    {% include "partials/_product_card.html" with id=p.id name=p.name price=p.price image=p.image.url category=p.category.name stock=p.stock %}
+
+  Product detail link: edit ONLY the line with {% url 'product' %} below when you change urls.py
+  (e.g. <a href="{% url 'product' p.pk %}"> once you have product/<int:pk>/).
+{% endcomment %}{% url 'product' as product_url %}
+<div class="col-6 col-md-4 col-xl-3">
+  <article class="p-card reveal" data-product data-id="{{ id }}" data-name="{{ name }}" data-price="{{ price }}" data-image="{{ image }}" data-category="{{ category }}" data-stock="{{ stock }}" data-rating="{{ rating|default:'4.8' }}">
+    <div class="p-media">
+      <a href="{{ product_url }}?id={{ id }}" class="p-link" aria-label="{{ name }}"><img src="{{ image }}" alt="{{ name }}" loading="lazy"></a>
+      {% if stock and stock|add:0 > 0 %}
+        {% if badge %}<span class="p-badge">{{ badge }}</span>{% endif %}
+      {% else %}
+        <span class="p-badge p-badge-out">Sold out</span>
+      {% endif %}
+      <button type="button" class="p-wish" data-wish aria-label="Add to wishlist" aria-pressed="false"><i class="bi bi-heart"></i></button>
+      {% if stock and stock|add:0 > 0 %}
+      <button type="button" class="p-quick" data-add-to-cart><i class="bi bi-bag-plus"></i> Quick add</button>
+      {% endif %}
+    </div>
+    <div class="p-body">
+      <div class="p-cat">{{ category }}</div>
+      <h3 class="p-title"><a href="{{ product_url }}?id={{ id }}">{{ name }}</a></h3>
+      <div class="p-meta">
+        <div class="p-price">${{ price }}{% if old_price %} <s>${{ old_price }}</s>{% endif %}</div>
+        <div class="p-rate"><i class="bi bi-star-fill"></i> {{ rating|default:"4.8" }}</div>
+      </div>
+    </div>
+  </article>
+</div>
